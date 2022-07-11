@@ -1,39 +1,39 @@
-var one;
-var two;
-var tree;
-var four;
-var six;
+var WKSlider;
+var SVSlider;
+var PlanSelector;
+var YearSelector;
 var serverprice = 40; //Change Server Price
 var bronzeWKprice = 19; //Change Bronze Workstation Price
 var silverWKprice = 29; //Change Silver Workstation Price
 var goldWKprice = 39; //Change Gold Workstation Price
+var result = 0;
 
 document.querySelector('#formulario').onchange = function () {
 
-    one = parseInt(document.getElementById("workstations").value);
-    two = parseInt(document.getElementById("servers").value);
-    tree = parseInt(document.getElementById("selector").value);
-    four = parseInt(document.getElementById("users").value);
-    six = document.getElementById("year");
-    var result = 0;
+    WKSlider = parseInt(document.getElementById("workstations").value);
+    SVSlider = parseInt(document.getElementById("servers").value);
+    PlanSelector = parseInt(document.getElementById("selector").value);
+    YearSelector = document.getElementById("year");
+    
+    //Slider Counter
+    var wk = document.getElementById("wk").innerHTML = WKSlider;
+    var sv = document.getElementById("sv").innerHTML = SVSlider;
+    //END Slider Counter
 
-    var wk = document.getElementById("wk").innerHTML = one;
-    var sv = document.getElementById("sv").innerHTML = two;
-    var us = document.getElementById("us").innerHTML = four;
-
-
+    //to know which plan the user has selected
     if (document.getElementById('bronze').selected == true) {
-        result = ((one * bronzeWKprice) + (two * serverprice) + tree + four);
+        result = ((WKSlider * bronzeWKprice) + (SVSlider * serverprice) + PlanSelector);
     } else if (document.getElementById('silver').selected == true) {
-        result = ((one * silverWKprice) + (two * serverprice) + tree + four);
+        result = ((WKSlider * silverWKprice) + (SVSlider * serverprice) + PlanSelector);
     } else {
-        result = ((one * goldWKprice) + (two * serverprice) + tree + four);
+        result = ((WKSlider * goldWKprice) + (SVSlider * serverprice) + PlanSelector);
     }
 
-    if (six.checked == true) {
+    //If the users has selected yearly, the price is multiplied by 12
+    if (YearSelector.checked == true) {
         result *= 12; //To Yearly Price (12Months)
     }
 
-    var result = document.getElementById("result").innerHTML = ("£" + result);
+    var result = document.getElementById("result").innerHTML = ("£" + result); //To print the final price
 
 }
